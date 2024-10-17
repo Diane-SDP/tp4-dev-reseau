@@ -59,7 +59,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((host, port))  
 s.listen(1)
 log_message("INFO", f"Le serveur tourne sur {host}:{port}")
-
+last_connection = time.time()
 while True:
     elapsed_time = time.time() - last_connection
     if elapsed_time >= 60:
@@ -94,5 +94,9 @@ while True:
                 break
     except socket.timeout:
             pass  
+    except socket.error:
+                print("Error occured")
+                print(socket.error)
+                break
 
 conn.close()
