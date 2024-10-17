@@ -49,7 +49,7 @@ def log_message(level, message):
         message_log = f"{timestamp} \033[37m{level}\033[0m {message}"
         print(f"{message_log}") 
     elif level == "WARN":
-        message_log = f"{timestamp} \033[33m{level}\033[0m kip {message}"
+        message_log = f"{timestamp} \033[33m{level}\033[0m {message}"
         print(f"{message_log}") 
     with open('/var/log/bs_server/bs_server.log', 'a') as logfile:
         logfile.write(message_log + ".\n")
