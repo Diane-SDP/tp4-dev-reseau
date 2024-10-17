@@ -3,7 +3,6 @@ import datetime
 import sys
 import socket
 import time
-import psutil
 import re
 import os
 

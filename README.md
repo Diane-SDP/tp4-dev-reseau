@@ -47,3 +47,7 @@ Le serveur a répondu b'Hi mate !'
 🌞 bs_server_II1.py
 
 ### 2. Logs
+
+```powershell
+[diane@localhost log]$ sudo touch /var/log/bs_server/bs_server.log
+```
