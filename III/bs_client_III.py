@@ -38,7 +38,7 @@ while True :
         log_message("ERROR", f"Impossible de se connecter au serveur {host} sur le port {port}.")
         break
 
-    message = input("Que veux-tu envoyer au serveur : ")
+    message = input("Calcul : ")
     while not validate_input(message):
         message = input("On accepte que les additions, soustractions, multiplications avec des nombres entiers de -100000 à 100000: ")
     s.sendall(str.encode(message))
@@ -47,7 +47,7 @@ while True :
     data = s.recv(1024)
 
     if data :
-        print(f"Le serveur a répondu {repr(data)}")
+        print(f"Résultat : {repr(data)}")
         log_message("INFO", f"Réponse reçue du serveur {host}: {repr(data)}.")
 
 s.close()
