@@ -43,7 +43,7 @@ while True:
                 data = conn.recv(1024)
                 if not data: break
                 log_message("INFO", f"Le client ({addr}) a envoyé \"{data}\".")
-                response = eval(str(data))
+                response = eval(data)
                 log_message("INFO", f"Réponse envoyée au client {addr}: \"{response}\".")
                 conn.sendall(response)
 
