@@ -14,7 +14,7 @@ class MyArgumentParser(argparse.ArgumentParser):
         print(message)  
         sys.exit()          
 
-host = '' 
+host = '10.1.1.254' 
 port = 13337 
 windows = os.name == "nt"
 
