@@ -21,30 +21,31 @@ def log_message(level, message):
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-try:
-    s.connect((host, port))
-    log_message("INFO", f"Connexion réussie à {host}:{port}.")
-except socket.error:
-    log_message("ERROR", f"Impossible de se connecter au serveur {host} sur le port {port}.")
+while True :
+    try:
+        s.connect((host, port))
+        log_message("INFO", f"Connexion réussie à {host}:{port}.")
+    except socket.error:
+        log_message("ERROR", f"Impossible de se connecter au serveur {host} sur le port {port}.")
+        break
 
-message = input("Que veux-tu envoyer au serveur : ")
+    message = input("Que veux-tu envoyer au serveur : ")
 
-if type(message) is not str:
-    raise TypeError("Ici on veut que des strings !")
+    if type(message) is not str:
+        raise TypeError("Ici on veut que des strings !")
 
-if not re.search(r".*(meo|waf).*", message) :
-    raise ValueError("on veut meo ou waf pas d'humain ici")
+    if not re.search(r".*(meo|waf).*", message) :
+        raise ValueError("on veut meo ou waf pas d'humain ici")
 
-s.sendall(str.encode(message))
-log_message("INFO", f"Message envoyé au serveur {host}:{port}.")
+    s.sendall(str.encode(message))
+    log_message("INFO", f"Message envoyé au serveur {host}:{port}.")
 
-data = s.recv(1024)
+    data = s.recv(1024)
+
+
+    if data :
+        print(f"Le serveur a répondu {repr(data)}")
+        log_message("INFO", f"Réponse reçue du serveur {host}: {repr(data)}.")
 
 s.close()
-
-if data :
-    print(f"Le serveur a répondu {repr(data)}")
-    log_message("INFO", f"Réponse reçue du serveur {host}: {repr(data)}.")
-
-
 sys.exit()

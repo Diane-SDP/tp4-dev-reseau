@@ -49,5 +49,7 @@ Le serveur a répondu b'Hi mate !'
 ### 2. Logs
 
 ```powershell
-[diane@localhost log]$ sudo touch /var/log/bs_server/bs_server.log
+[diane@localhost ~]$ sudo mkdir /var/log/bs_server/
+[diane@localhost ~]$ sudo touch /var/log/bs_server/bs_server.log
+[diane@localhost ~]$ sudo chmod -R 755 /var/log/bs_server
 ```
