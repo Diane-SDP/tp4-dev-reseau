@@ -4,10 +4,11 @@ import sys
 import socket
 import time
 import re
-import os     
+import os       
 
 host = '10.1.1.254' 
 port = 13337 
+windows = os.name == "nt"
 
 def log_message(level, message):
     timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -42,18 +43,9 @@ while True:
                 data = conn.recv(1024)
                 if not data: break
                 log_message("INFO", f"Le client ({addr}) a envoyé \"{data}\".")
-                response = None
-
-                if str.encode("meo") in data :
-                    response = str.encode("Meo à toi confrère.")
-                elif str.encode("waf") in data :
-                    response = str.encode("ptdr t ki")
-                else :
-                    response = str.encode("Mes respects humble humain.")
-                
-                if response != None: 
-                    log_message("INFO", f"Réponse envoyée au client {addr}: \"{response}\".")
-                    conn.sendall(response)
+                response = eval(str(data))
+                log_message("INFO", f"Réponse envoyée au client {addr}: \"{response}\".")
+                conn.sendall(response)
 
             except socket.error:
                 print("Error occured")
