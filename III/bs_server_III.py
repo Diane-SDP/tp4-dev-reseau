@@ -45,7 +45,7 @@ while True:
                 log_message("INFO", f"Le client ({addr}) a envoyé \"{data}\".")
                 response = eval(data)
                 log_message("INFO", f"Réponse envoyée au client {addr}: \"{response}\".")
-                conn.sendall(response)
+                conn.sendall(bytes(response))
 
             except socket.error:
                 print("Error occured")
