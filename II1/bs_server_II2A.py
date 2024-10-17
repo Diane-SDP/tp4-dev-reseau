@@ -84,9 +84,9 @@ while True:
                 else :
                     response = str.encode("Mes respects humble humain.")
                 
-                if response : 
-                    conn.sendall(response)
+                if response != None: 
                     log_message("INFO", f"Réponse envoyée au client {addr}: \"{response}\".")
+                    conn.sendall(response)
 
             except socket.error:
                 print("Error occured")
